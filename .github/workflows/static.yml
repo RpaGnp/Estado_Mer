@@ -35,8 +35,8 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
             # Check if the directory exists
-            if [ -d "/home/Estado_Mer/estado_mer/.git" ]; then
-              cd /home/Estado_Mer/estado_mer/
+            if [ -d "/home/Estado_Mer/Estado_Mer/.git" ]; then
+              cd /home/Estado_Mer/Estado_Mer/
               echo "El repositorio existe. Actualizando..."
               git fetch origin
               git reset --hard origin/main
@@ -52,7 +52,7 @@ jobs:
         run: |
           echo "** Construyendo y levantando contenedor Docker... **"
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
-            cd /home/Estado_Mer/estado_mer/
+            cd /home/Estado_Mer/Estado_Mer/
             docker-compose build
             docker-compose up -d
           EOF
