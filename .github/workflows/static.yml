@@ -43,7 +43,7 @@ jobs:
             else
               cd /home/Estado_Mer/
               echo "El repositorio no existe. Clonando..."
-              git clone https://${{ secrets.TOKEN_GITHUB }}@github.com/RpaGnp/Estado_Mer.gitls
+              git clone https://${{ secrets.TOKEN_GITHUB }}@github.com/RpaGnp/Estado_Mer.git
             fi
           EOF
 
