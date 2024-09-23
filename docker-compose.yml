@@ -1,0 +1,29 @@
+version: "3"
+
+services: 
+  selenium:
+    container_name: selenium_estado_mer
+    image: selenium/standalone-chrome
+    volumes:
+      - /dev/shm:/dev/shmzdoc
+    ports:
+      - 4446:4444
+      - 0.0.0.0:9222:9222
+    networks:
+      - bot-network
+    restart: always 
+
+  app:
+    build: 
+      context: .
+    volumes:
+      - ./app:/app
+    environment:
+      USER: 46195783
+      PSW: Lulao.01*/
+    networks:
+      - bot-network
+
+networks:
+  bot-network:
+    driver: bridge
