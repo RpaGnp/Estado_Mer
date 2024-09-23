@@ -23,7 +23,7 @@ services:
       PSW: Lulao.01*/
     networks:
       - bot-network
-    restart: always 
+    restart: always }
 
 networks:
   bot-network:
