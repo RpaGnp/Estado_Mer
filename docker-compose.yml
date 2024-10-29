@@ -23,7 +23,7 @@ services:
     volumes:
       - ./app:/app
     environment:
-      CHROME_HOST: bot_gestor1_chrome
+      CHROME_HOST: estado_mer_chrome
       USER: 46195783
       PSW: Lulao.01*/
     networks:
