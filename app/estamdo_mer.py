@@ -58,8 +58,9 @@ class bot():
         else:
             time.sleep(10)
             chrome_options = self.get_chrome_options()
+            chrome_host = os.getenv('CHROME_HOST', 'localhost')
             self.driver = webdriver.Remote(
-                command_executor='http://selenium:4444/wd/hub',
+                command_executor=f'http://{chrome_host}:4444/wd/hub',
                 options=chrome_options
             )
 
