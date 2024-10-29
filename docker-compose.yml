@@ -3,16 +3,18 @@ version: "3"
 services: 
   estado_mer_chrome:
     container_name: estado_mer_chrome
-    # image: selenium/standalone-chrome
-    image: selenium/standalone-chrome-debug  # Cambiado a la versión con soporte VNC
+    image: selenium/standalone-chrome
+    # image: selenium/standalone-chrome-debug  # Cambiado a la versión con soporte VNC
     volumes:
       - /dev/shm:/dev/shmzdoc
     ports:
-      - 4446:4444
+      - 4400:4444
       - "7980:7900"
       - "9200:9222"
     networks:
       - bot-network
+    environment:
+      - SE_VNC_NO_PASSWORD=1
     restart: always 
 
   app:
