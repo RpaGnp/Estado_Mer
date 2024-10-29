@@ -1,8 +1,8 @@
 version: "3"
 
 services: 
-  selenium_estado_mer:
-    container_name: selenium_estado_mer
+  estado_mer_chrome:
+    container_name: estado_mer_chrome
     # image: selenium/standalone-chrome
     image: selenium/standalone-chrome-debug  # Cambiado a la versión con soporte VNC
     volumes:
