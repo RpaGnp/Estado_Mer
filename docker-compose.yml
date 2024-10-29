@@ -1,7 +1,7 @@
 version: "3"
 
 services: 
-  selenium:
+  selenium_estado_mer:
     container_name: selenium_estado_mer
     # image: selenium/standalone-chrome
     image: selenium/standalone-chrome-debug  # Cambiado a la versión con soporte VNC
@@ -9,8 +9,8 @@ services:
       - /dev/shm:/dev/shmzdoc
     ports:
       - 4446:4444
-      - 0.0.0.0:9222:9222
-      - 5900:5900  
+      - "7980:7900"
+      - "9200:9222"
     networks:
       - bot-network
     restart: always 
