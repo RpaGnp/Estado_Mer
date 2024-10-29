@@ -140,9 +140,6 @@ class bot():
                 text_btn = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.XPATH, f'//*[@id="formPrincipal:solicitudDthList"]/tbody/tr[{i}]/td[1]/div/input'))).get_attribute('value')
                 tipo = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.XPATH, f'//*[@id="formPrincipal:solicitudDthList"]/tbody/tr[{i}]/td[5]/div'))).text
 
-                print(dia)
-                print(str(date.today().day))
-
                 if int(dia) != int(date.today().day):
                     salir = True
                     break
