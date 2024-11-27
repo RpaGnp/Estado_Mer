@@ -24,7 +24,13 @@ class bot():
     def get_chrome_options(self):
         options = ChromeOptions()
         options.add_argument("--start-maximized")
-        
+        options.add_argument("--start-maximized")
+        options.add_argument("--no-sandbox")  # Ayuda en entornos restringidos
+        options.add_argument("--disable-dev-shm-usage")  # Usa memoria del disco si la compartida no es suficiente
+        options.add_argument("--disable-gpu")  # Opcional, desactiva la GPU
+        options.add_argument("--headless")  # Ejecutar en modo headless
+        options.add_argument("--disable-extensions")  # Reduce el consumo de memoria
+        options.add_argument("--disable-infobars")  # Deshabilita las barras de información
         # Configurar las preferencias de descarga
         options.add_experimental_option("prefs", {
             "download.default_directory": '/home/seluser/Downloads',   # Directorio de descarga
