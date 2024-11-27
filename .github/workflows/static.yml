@@ -53,10 +53,11 @@ jobs:
           echo "** Construyendo y levantando contenedor Docker... **"
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
             cd /home/Estado_Mer/Estado_Mer/
-            echo "** Construyendo contenedor Docker... **"
-            docker-compose build
-            echo "** detiene los contenedores Docker... **"
-            docker-compose down
-            echo "** Levantando contenedor Docker... **"
-            docker-compose up -d
+            source reiniciar_contenedores.sh
+            # echo "** Construyendo contenedor Docker... **"
+            # docker-compose build
+            # echo "** detiene los contenedores Docker... **"
+            # docker-compose down
+            # echo "** Levantando contenedor Docker... **"
+            # docker-compose up -d
           EOF
