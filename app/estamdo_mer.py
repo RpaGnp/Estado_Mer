@@ -69,24 +69,29 @@ class bot():
         self.driver.get("https://mglapp.claro.com.co/catastro-warIns/view/MGL/template/login.xhtml?faces-redirect=true")
         # self.driver.save_screenshot('./screenshot.png')
         self.wait = WebDriverWait(self.driver, 1)
+        print('buscando inputs')
 
         try:
+            print('ingresando usuario')
             user_field = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'usuario')))
         except Exception as e:
             print('No encontro los campos de logueo')
             exit()
 
+        print('ingresando usuario')
         # self.driver.save_screenshot('./screenshot.png')
         user_field.clear()
         user_field.send_keys(self.userMER)
         # self.driver.save_screenshot('./screenshot.png')
 
+        print('ingresando pws')
         password_field = self.wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="j_idt29"]/div/div/fieldset/div[3]/input')))
         # self.driver.save_screenshot('./screenshot.png')
         password_field.clear()
         password_field.send_keys(self.pswMER)
         # self.driver.save_screenshot('./screenshot.png')
 
+        print('loguear')
         self.driver.find_element(by=By.XPATH, value='//*[@id="j_idt29"]/div/div/fieldset/div[5]/div/div').click()
         # self.driver.save_screenshot('./screenshot.png')
 
@@ -96,11 +101,11 @@ class bot():
             exit()
 
         # Intenta encontrar el elemento 'formPrincipal', imagen de claro
+        print("Intenta encontrar el elemento 'formPrincipal', imagen de claro")
         if self.chek_object('formPrincipal', 'ingresó!', 60):
             while True:
                 self.process() 
                 time.sleep(30)
-                
 
     def process(self):
         
@@ -110,6 +115,7 @@ class bot():
         )
         self.driver.execute_script("arguments[0].click();", menu_element)
         # self.driver.save_screenshot('./screenshot.png')
+        print('buscando...')
 
         salir = False
         for i in range(1, 100):
@@ -143,9 +149,11 @@ class bot():
                 estado = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.XPATH, f'//*[@id="formPrincipal:solicitudDthList"]/tbody/tr[{i}]/td[7]'))).text
                 text_btn = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.XPATH, f'//*[@id="formPrincipal:solicitudDthList"]/tbody/tr[{i}]/td[1]/div/input'))).get_attribute('value')
                 tipo = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.XPATH, f'//*[@id="formPrincipal:solicitudDthList"]/tbody/tr[{i}]/td[5]/div'))).text
+                print('validando...')
 
                 if int(dia) != int(date.today().day):
                     salir = True
+                    print('no hay saliendo...')
                     break
 
                 if estado == 'PENDIENTE' and tipo == 'CAMBIO ESTRATO' and text_btn == 'Gestionar' and int(dia) == int(date.today().day):
