@@ -18,6 +18,7 @@ services:
     restart: always
 
   app:
+    container_name: estado_mer
     build:
       context: .
     volumes:
