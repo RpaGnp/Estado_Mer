@@ -67,6 +67,7 @@ class bot():
     def login_wf(self):
 
         self.driver.get("https://mglapp.claro.com.co/catastro-warIns/view/MGL/template/login.xhtml?faces-redirect=true")
+        # self.driver.save_screenshot('./screenshot.png')
         self.wait = WebDriverWait(self.driver, 1)
 
         try:
@@ -74,16 +75,20 @@ class bot():
         except Exception as e:
             print('No encontro los campos de logueo')
             exit()
-        print('Ingresando usuario')
+
+        # self.driver.save_screenshot('./screenshot.png')
         user_field.clear()
         user_field.send_keys(self.userMER)
+        # self.driver.save_screenshot('./screenshot.png')
 
-        print('Ingresando password')
         password_field = self.wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="j_idt29"]/div/div/fieldset/div[3]/input')))
+        # self.driver.save_screenshot('./screenshot.png')
         password_field.clear()
         password_field.send_keys(self.pswMER)
+        # self.driver.save_screenshot('./screenshot.png')
 
         self.driver.find_element(by=By.XPATH, value='//*[@id="j_idt29"]/div/div/fieldset/div[5]/div/div').click()
+        # self.driver.save_screenshot('./screenshot.png')
 
         # Intenta encontrar el elemento 'messagesPop'
         if self.chek_object('messagesPop', 'La contraseña es errónea', 3):
@@ -92,14 +97,19 @@ class bot():
 
         # Intenta encontrar el elemento 'formPrincipal', imagen de claro
         if self.chek_object('formPrincipal', 'ingresó!', 60):
-           self.process() 
+            while True:
+                self.process() 
+                time.sleep(30)
+                
 
     def process(self):
         
+        # self.driver.save_screenshot('./screenshot.png')
         menu_element = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.ID, 'formPrincipal:menuVtGestionSolicitud'))
         )
         self.driver.execute_script("arguments[0].click();", menu_element)
+        # self.driver.save_screenshot('./screenshot.png')
 
         salir = False
         for i in range(1, 100):
@@ -112,6 +122,7 @@ class bot():
                 )
                 select = Select(filtro_element)
                 select.select_by_value("2") 
+                # self.driver.save_screenshot('./screenshot.png')
 
                 #valida que el filtro por CAMBIO ESTRETO este aplicado.
                 while True:
@@ -155,10 +166,12 @@ class bot():
                             EC.element_to_be_clickable((By.ID, 'cerrarMensajeErrorBtn'))
                         )
                         btn_acept.click()
+                        # self.driver.save_screenshot('./screenshot.png')
                         continue
                     except:
                         pass
 
+                    # self.driver.save_screenshot('./screenshot.png')
 
                     try:
                         filtro_element = WebDriverWait(self.driver, 10).until(
@@ -177,6 +190,7 @@ class bot():
                             )
                             select = Select(filtro_element)
                             select.select_by_value("2") 
+                            # self.driver.save_screenshot('./screenshot.png')
                             continue
 
                         except:
@@ -192,6 +206,7 @@ class bot():
                                 )
                                 select = Select(filtro_element)
                                 select.select_by_value("2") 
+                                # self.driver.save_screenshot('./screenshot.png')
 
                                 continue
                             
@@ -201,32 +216,38 @@ class bot():
                                     EC.presence_of_element_located((By.XPATH, '//*[@id="formSolicitud:goBackCamEst"]'))
                                 )
                                 self.driver.execute_script("arguments[0].click();", btn_back)
+                                # self.driver.save_screenshot('./screenshot.png')
 
                                 filtro_element = WebDriverWait(self.driver, 10).until(
                                     EC.presence_of_element_located((By.XPATH, '//*[@id="formPrincipal:filtro"]'))
                                 )
                                 select = Select(filtro_element)
                                 select.select_by_value("2") 
+                                # self.driver.save_screenshot('./screenshot.png')
 
                                 continue
 
 
                     select = Select(filtro_element)
                     select.select_by_value("GESTION DE HHPP DE FORMA MANUAL") 
+                    # self.driver.save_screenshot('./screenshot.png')
 
                     btn_acept = WebDriverWait(self.driver, 10).until(
                         EC.presence_of_element_located((By.XPATH, '//*[@id="formSolicitud:aceptarButtonCamEst"]'))
                     )
                     self.driver.execute_script("arguments[0].click();", btn_acept)
+                    # self.driver.save_screenshot('./screenshot.png')
 
                     btn_acept = WebDriverWait(self.driver, 3).until(
                         EC.element_to_be_clickable((By.ID, 'cerrarMensajeErrorBtn'))
                     )
                     btn_acept.click()
+                    # self.driver.save_screenshot('./screenshot.png')
                     btn_back = WebDriverWait(self.driver, 10).until(
                         EC.presence_of_element_located((By.XPATH, '//*[@id="formSolicitud:goBackCamEst"]'))
                     )
                     self.driver.execute_script("arguments[0].click();", btn_back)
+                    # self.driver.save_screenshot('./screenshot.png')
 
                     print('fecha.text')
 
@@ -236,13 +257,14 @@ class bot():
             self.driver.execute_script("arguments[0].click();", menu_element)
 
         print('no hay registros')
-        self.close_all()
+        # self.close_all()
 
     def chek_object(self, obj, msg, time):
         try:
             # self.wait.until(EC.presence_of_element_located((By.ID, obj)))
             WebDriverWait(self.driver, time).until(EC.presence_of_element_located((By.ID, obj)))
             print(msg)
+            # self.driver.save_screenshot('./screenshot.png')
             return True
         except:
             return False
@@ -257,7 +279,7 @@ class bot():
         self.driver.quit()
 
 if __name__ == '__main__':
-    print('iniciando bot')
+
     while True:
         try:
             b = bot()
