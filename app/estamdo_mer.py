@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
-from selenium.webdriver.opera.options import Options as OperaOptions
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.support.ui import Select
 from datetime import date
@@ -48,8 +47,9 @@ class bot():
     def create_browser(self):        
 
         if 'Windows' in platform():
-            # print('The operating system is Windows\nWe will look for "Opera"')
-            # from selenium.webdriver.opera.options import Options as OperaOptions
+            
+            print('The operating system is Windows\nWe will look for "Opera"')
+            from selenium.webdriver.opera.options import Options as OperaOptions
 
             # opera_options = OperaOptions()
             # opera_options.binary_location = r'%s\AppData\Local\Programs\Opera\opera.exe' % os.path.expanduser('~')
