@@ -17,6 +17,7 @@ lib/
 
 # Our own local stuff
 local_settings.py  # Example only - feel free to remove or add other settings files
+app/obtener_cookies.py
 *.pem
 *.key
 *.pfx
