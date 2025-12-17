@@ -42,12 +42,12 @@ class ImageWindow(QWidget):
         # Campos de texto para credenciales
         self.user_label = QLabel('Usuario:')
         self.user_input = QLineEdit(self)
-        self.user_input.setText("C45528145")
+        self.user_input.setText("C46179873")
 
         self.pass_label = QLabel('Contraseña:')
         self.pass_input = QLineEdit(self)
-        self.pass_input.setText("Julian12**")
-
+        self.pass_input.setText("Estado30**")
+        # Estado30**
         # Agregar botón para cargar archivo .xlsx
         self.cargar_archivo_label = QLabel('No se ha seleccionado ningún archivo .xlsx')
         self.cargar_archivo_button = QPushButton('Cargar archivo', self)
@@ -81,10 +81,8 @@ class ImageWindow(QWidget):
         # Configurar el layout
         self.setLayout(layout)
 
-
     def start_process(self):
         print('inicio')
-
 
     def cargar_archivo(self):
         # Abrir cuadro de diálogo para seleccionar archivo .xlsx
@@ -109,47 +107,4 @@ if __name__ == '__main__':
     ventana = ImageWindow()
     ventana.show()
     app.exec_()
-
-
-# enter 
-# 1
-# numero de cliente o cuenta 
-# F7
-# shift f4
-# shift f2
-# nodo donde dice ubicacion 
-# f8
-# 20 Tab se deja 
-# shift f1
-# enter
-# f12
-# f12
-# cta 
-# nota 
-# enter
-
-
-
-# segmenteacion 
-
-# 1
-# enter
-# calle 
-# placa
-# piso o numero 
-# comunidad 
-# dicicion 
-# f10
-# validar 'consulta de unidad' si no error 
-
-# shift f2
-# nodo en ubicacion 
-# f8 
-# 20 tab 
-# shift f1
-# dejar nota 
-# se cambia noso por segmentacion
-# enter
-# f12
-
 

@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
+from selenium.webdriver.opera.options import Options as OperaOptions
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.support.ui import Select
 from datetime import date
@@ -55,11 +56,16 @@ class bot():
             # opera_options.add_argument('--start-maximized')
             # self.driver = webdriver.Opera(executable_path=r'C:\dchrome\operadriver.exe', options=opera_options)
 
-            print('The operating system is Windows\nWe will look for "Chrome"')
+            # print('The operating system is Windows\nWe will look for "Chrome"')
             
-            chrome_options = Options()
-            chrome_options.add_argument('--start-maximized')  # Mantener otras opciones
-            self.driver = webdriver.Chrome(executable_path=r'C:\dchrome\chromedriver.exe', options=chrome_options)
+            # chrome_options = Options()
+            # chrome_options.add_argument('--start-maximized')  # Mantener otras opciones
+            # self.driver = webdriver.Chrome(executable_path=r'C:\dchrome\chromedriver.exe', options=chrome_options)
+            
+            opera_options = OperaOptions()
+            opera_options.binary_location = r'%s\AppData\Local\Programs\Opera\opera.exe' % os.path.expanduser('~')
+            opera_options.add_argument('--start-maximized')
+            self.driver = webdriver.Opera(executable_path=r'C:\dchrome\operadriver.exe', options=opera_options)
 
         else:
             time.sleep(10)
@@ -155,7 +161,7 @@ class bot():
                 estado = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.XPATH, f'//*[@id="formPrincipal:solicitudDthList"]/tbody/tr[{i}]/td[7]'))).text
                 text_btn = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.XPATH, f'//*[@id="formPrincipal:solicitudDthList"]/tbody/tr[{i}]/td[1]/div/input'))).get_attribute('value')
                 tipo = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.XPATH, f'//*[@id="formPrincipal:solicitudDthList"]/tbody/tr[{i}]/td[5]/div'))).text
-                print('validando...')
+                print(f'validando... {id}')
 
                 if int(dia) != int(date.today().day):
                     salir = True
@@ -170,10 +176,14 @@ class bot():
                     print(tipo)
                     print('actualizar')
 
-                    menu_element = WebDriverWait(self.driver, 10).until(
-                        EC.presence_of_element_located((By.NAME , f'formPrincipal:solicitudDthList:{i-1}:j_idt332'))
-                    )
-                    self.driver.execute_script("arguments[0].click();", menu_element)
+                    try:
+                        menu_element = WebDriverWait(self.driver, 10).until(
+                            EC.presence_of_element_located((By.NAME , f'formPrincipal:solicitudDthList:{i-1}:j_idt339'))
+                        )
+                        # EC.presence_of_element_located((By.NAME , f'formPrincipal:solicitudDthList:{i-1}:j_idt332'))
+                        self.driver.execute_script("arguments[0].click();", menu_element)
+                    except:
+                        continue
 
                     try:
                         btn_acept = WebDriverWait(self.driver, 3).until(
@@ -266,8 +276,9 @@ class bot():
                     print('fecha.text')
 
             menu_element = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((By.NAME , f'formPrincipal:solicitudDthList:j_idt387'))
+                    EC.presence_of_element_located((By.NAME , f'formPrincipal:solicitudDthList:j_idt394'))
                 )
+                    # EC.presence_of_element_located((By.NAME , f'formPrincipal:solicitudDthList:j_idt387'))
             self.driver.execute_script("arguments[0].click();", menu_element)
 
         print('no hay registros')

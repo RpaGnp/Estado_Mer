@@ -25,8 +25,8 @@ services:
       - ./app:/app
     environment:
       CHROME_HOST: estado_mer_chrome
-      USER: 46179873
-      PSW: Prueba25**
+      USER: 46233099
+      PSW: GsL2li3.*6
     networks:
       - bot-network
     restart: always
