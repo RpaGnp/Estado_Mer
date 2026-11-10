@@ -168,6 +168,13 @@ class bot():
                     print('no hay saliendo...')
                     break
 
+                print(id)
+                print(dia)
+                print(estado)
+                print(text_btn)
+                print(tipo)
+                print('actualizar')
+
                 if estado == 'PENDIENTE' and tipo == 'CAMBIO ESTRATO' and text_btn == 'Gestionar' and int(dia) == int(date.today().day):
                     print(id)
                     print(dia)
@@ -178,7 +185,7 @@ class bot():
 
                     try:
                         menu_element = WebDriverWait(self.driver, 10).until(
-                            EC.presence_of_element_located((By.NAME , f'formPrincipal:solicitudDthList:{i-1}:j_idt339'))
+                            EC.presence_of_element_located((By.NAME , f'formPrincipal:solicitudDthList:{i-1}:j_idt333'))
                         )
                         # EC.presence_of_element_located((By.NAME , f'formPrincipal:solicitudDthList:{i-1}:j_idt332'))
                         self.driver.execute_script("arguments[0].click();", menu_element)
